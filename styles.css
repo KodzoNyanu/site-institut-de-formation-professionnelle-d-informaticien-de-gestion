@@ -217,9 +217,18 @@ section { padding: 96px 0; }
 .methode-item p { font-size: .88rem; color: rgba(255,255,255,.65); }
 
 /* ===== Bande d'appel à l'action ===== */
-.cta-band { background: var(--noir); color: var(--blanc); padding: 72px 0; text-align: center; }
+.cta-band {
+  background: var(--gris-fond); color: var(--noir);
+  border-top: 1px solid var(--gris-clair);
+  padding: 64px 0; text-align: center;
+}
 .cta-band h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
-.cta-band p { color: rgba(255,255,255,.7); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-band p { color: var(--gris); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+/* Boutons inversés pour rester lisibles sur fond clair */
+.cta-band .btn-white { background: var(--noir); color: var(--blanc); border-color: var(--noir); }
+.cta-band .btn-white:hover { background: var(--gris-fonce); }
+.cta-band .btn-outline-white { background: transparent; color: var(--noir); border-color: var(--noir); }
+.cta-band .btn-outline-white:hover { background: rgba(0,0,0,.06); }
 
 /* ===== Admission ===== */
 .admission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
