@@ -41,6 +41,7 @@ header {
 .nav-links a { font-size: .92rem; font-weight: 500; color: var(--gris-fonce); transition: color .2s; }
 .nav-links a:hover { color: var(--noir); }
 .nav-links a.active { color: var(--noir); font-weight: 700; border-bottom: 2px solid var(--noir); padding-bottom: 3px; }
+.nav-links a.btn-dark, .nav-links a.btn-dark:hover { color: var(--blanc); }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: .92rem;
