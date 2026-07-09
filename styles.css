@@ -92,7 +92,7 @@ header {
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ===== Hero carrousel ===== */
-.hero-carousel { position: relative; background: var(--noir); overflow: hidden; }
+.hero-carousel { position: relative; background: var(--noir); overflow: hidden; padding: 0; }
 .hero-track { display: flex; transition: transform .6s cubic-bezier(.6,.05,.2,.95); will-change: transform; }
 .hero-slide {
   position: relative; flex: 0 0 100%; min-height: 560px;
@@ -110,20 +110,22 @@ header {
   width: 560px; height: 560px; border-radius: 50%;
   border: 1px solid rgba(255,255,255,.08); pointer-events: none;
 }
-/* vidéo de fond (diapo 1) */
-.hero-video { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+/* média de fond : vidéo (diapo 1) ou image (diapos 2-3) */
+.hero-video, .hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero-media { background-size: cover; background-position: center; }
+/* recouvrement plein cadre de la vidéo YouTube (technique 300 % : plus de bandes noires) */
 .hero-video iframe {
-  position: absolute; top: 50%; left: 50%;
-  width: 100vw; height: 56.25vw;          /* couvre selon la largeur (16:9) */
-  min-height: 100%; min-width: 177.78vh;   /* couvre selon la hauteur (16:9) */
-  transform: translate(-50%, -50%); border: 0; pointer-events: none;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 100%; height: 100%; border: 0; pointer-events: none;
 }
-/* voile sombre pour garder le texte lisible sur la vidéo */
-.hero-video::after {
+@media (min-aspect-ratio: 16/9) { .hero-video iframe { width: 100%; height: 300%; } }
+@media (max-aspect-ratio: 16/9) { .hero-video iframe { width: 300%; height: 100%; } }
+/* voile plus léger : laisse voir le média tout en gardant le texte lisible */
+.hero-video::after, .hero-media::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.65) 55%, rgba(0,0,0,.4) 100%);
+  background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.18) 100%);
 }
-.hero-slide .hero-content { position: relative; z-index: 2; }
+.hero-slide .hero-content { position: relative; z-index: 2; text-shadow: 0 2px 14px rgba(0,0,0,.45); }
 
 /* flèches */
 .hero-arrow {

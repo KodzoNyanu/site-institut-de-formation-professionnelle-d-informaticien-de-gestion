@@ -1,0 +1,14 @@
+Images de fond du carrousel du hero (page d'accueil)
+=====================================================
+
+Déposez ici les deux images, avec EXACTEMENT ces noms de fichier :
+
+  cpne.jpg          -> diapo 2 « Une pédagogie par compétences… »
+  inscriptions.jpg  -> diapo 3 « Rentrée ouverte »
+
+Conseils :
+- Format paysage, idéalement 1600 x 900 px ou plus (JPG ou PNG).
+- Si une image manque, la diapo reste sur fond noir (le texte reste lisible) —
+  rien ne casse.
+- Après avoir déposé les fichiers : git add media/, git commit, git push
+  (le déploiement Vercel + GitHub Pages se met à jour automatiquement).
