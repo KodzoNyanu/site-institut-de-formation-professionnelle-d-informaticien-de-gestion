@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFPIG Lomé — Institut de Formation Professionnelle en Informatique de Gestion</title>
+  <meta name="description" content="IFPIG Lomé : formation professionnelle diplômante en informatique de gestion à Lomé (Togo). Approche par compétences, pratique intensive sur ERP, partenariat méthodologique suisse.">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #0d0d0d;
+      --noir-doux: #1a1a1a;
+      --gris-fonce: #333;
+      --gris: #6b6b6b;
+      --gris-clair: #e8e8e8;
+      --gris-fond: #f7f7f7;
+      --blanc: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      color: var(--noir);
+      background: var(--blanc);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== Navbar ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gris-clair);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; }
+    .brand .logo {
+      width: 40px; height: 40px; background: var(--noir); color: var(--blanc);
+      display: grid; place-items: center; border-radius: 8px; font-size: 1.2rem;
+    }
+    .brand small { display: block; font-weight: 400; font-size: .68rem; color: var(--gris); letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: .92rem; font-weight: 500; color: var(--gris-fonce); transition: color .2s; }
+    .nav-links a:hover { color: var(--noir); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: .92rem;
+      transition: all .2s; border: 1.5px solid var(--noir); cursor: pointer;
+    }
+    .btn-dark { background: var(--noir); color: var(--blanc); }
+    .btn-dark:hover { background: var(--gris-fonce); }
+    .btn-light { background: var(--blanc); color: var(--noir); }
+    .btn-light:hover { background: var(--gris-fond); }
+    .btn-outline-white { background: transparent; color: var(--blanc); border-color: rgba(255,255,255,.4); }
+    .btn-outline-white:hover { border-color: var(--blanc); background: rgba(255,255,255,.08); }
+    .btn-white { background: var(--blanc); color: var(--noir); border-color: var(--blanc); }
+    .btn-white:hover { background: var(--gris-clair); }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: var(--noir); color: var(--blanc);
+      padding: 110px 0 90px;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: -180px; top: -180px;
+      width: 560px; height: 560px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .hero::before {
+      content: ""; position: absolute; right: -100px; top: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .hero .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      border: 1px solid rgba(255,255,255,.25); border-radius: 100px;
+      padding: 7px 16px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -.03em;
+      max-width: 780px; margin-bottom: 24px;
+    }
+    .hero p.lead {
+      font-size: 1.12rem; color: rgba(255,255,255,.72);
+      max-width: 640px; margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ===== Stats bar ===== */
+    .stats {
+      background: var(--blanc);
+      border-bottom: 1px solid var(--gris-clair);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      padding: 36px 0;
+    }
+    .stat { text-align: center; padding: 0 16px; border-left: 1px solid var(--gris-clair); }
+    .stat:first-child { border-left: none; }
+    .stat .num { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; }
+    .stat .label { font-size: .82rem; color: var(--gris); margin-top: 2px; }
+
+    /* ===== Sections ===== */
+    section { padding: 96px 0; }
+    .section-head { max-width: 640px; margin-bottom: 56px; }
+    .section-head .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gris); margin-bottom: 14px;
+    }
+    .section-head .tag i { font-size: .9rem; }
+    .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.18; margin-bottom: 16px; }
+    .section-head p { color: var(--gris); font-size: 1.02rem; }
+
+    /* ===== À propos ===== */
+    .apropos-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: start; }
+    .apropos-grid p { margin-bottom: 18px; color: var(--gris-fonce); }
+    .apropos-points { display: grid; gap: 20px; }
+    .point {
+      display: flex; gap: 18px; padding: 24px;
+      border: 1px solid var(--gris-clair); border-radius: 12px;
+      transition: border-color .2s, transform .2s;
+    }
+    .point:hover { border-color: var(--noir); transform: translateY(-2px); }
+    .point i { font-size: 1.5rem; flex-shrink: 0; }
+    .point h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .point p { font-size: .9rem; color: var(--gris); margin: 0; }
+
+    /* ===== Formations ===== */
+    .bg-gris { background: var(--gris-fond); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card {
+      background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: 14px;
+      padding: 36px 30px; display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .card.featured { background: var(--noir); color: var(--blanc); border-color: var(--noir); }
+    .card .icon {
+      width: 52px; height: 52px; border-radius: 10px;
+      background: var(--noir); color: var(--blanc);
+      display: grid; place-items: center; font-size: 1.4rem; margin-bottom: 24px;
+    }
+    .card.featured .icon { background: var(--blanc); color: var(--noir); }
+    .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -.01em; }
+    .card .sub { font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gris); margin-bottom: 18px; font-weight: 600; }
+    .card.featured .sub { color: rgba(255,255,255,.6); }
+    .card ul { list-style: none; display: grid; gap: 10px; margin-bottom: 26px; flex-grow: 1; }
+    .card ul li { display: flex; gap: 10px; font-size: .92rem; color: var(--gris-fonce); }
+    .card.featured ul li { color: rgba(255,255,255,.82); }
+    .card ul li i { font-size: .95rem; margin-top: 2px; }
+    .card .prix { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; }
+    .card .prix small { display: block; font-size: .78rem; font-weight: 400; color: var(--gris); }
+    .card.featured .prix small { color: rgba(255,255,255,.6); }
+
+    /* ===== Programme ===== */
+    .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .module {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 24px; border: 1px solid var(--gris-clair); border-radius: 12px;
+      background: var(--blanc); font-weight: 600; font-size: .95rem;
+      transition: border-color .2s;
+    }
+    .module:hover { border-color: var(--noir); }
+    .module i { font-size: 1.3rem; }
+
+    /* ===== Méthode / bande noire ===== */
+    .methode { background: var(--noir); color: var(--blanc); }
+    .methode .section-head .tag, .methode .section-head p { color: rgba(255,255,255,.6); }
+    .methode-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .methode-item { padding: 28px 24px; border: 1px solid rgba(255,255,255,.15); border-radius: 12px; transition: border-color .2s; }
+    .methode-item:hover { border-color: rgba(255,255,255,.5); }
+    .methode-item i { font-size: 1.6rem; display: block; margin-bottom: 16px; }
+    .methode-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .methode-item p { font-size: .88rem; color: rgba(255,255,255,.65); }
+
+    /* ===== Admission ===== */
+    .admission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .steps { display: grid; gap: 0; }
+    .step { display: flex; gap: 20px; position: relative; padding-bottom: 32px; }
+    .step:last-child { padding-bottom: 0; }
+    .step::before {
+      content: ""; position: absolute; left: 21px; top: 44px; bottom: 0;
+      width: 1px; background: var(--gris-clair);
+    }
+    .step:last-child::before { display: none; }
+    .step .n {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: var(--noir); color: var(--blanc);
+      display: grid; place-items: center; font-weight: 700; font-size: 1rem;
+    }
+    .step h3 { font-size: 1.02rem; font-weight: 700; margin: 8px 0 4px; }
+    .step p { font-size: .92rem; color: var(--gris); }
+    .publics { display: grid; gap: 14px; }
+    .public {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 22px; background: var(--gris-fond); border-radius: 10px;
+      font-size: .95rem; font-weight: 500;
+    }
+    .public i { font-size: 1.2rem; }
+
+    /* ===== Contact ===== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .contact-info { display: grid; gap: 8px; align-content: start; }
+    .contact-line { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--gris-clair); }
+    .contact-line i { font-size: 1.25rem; }
+    .contact-line h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gris); font-weight: 600; }
+    .contact-line p { font-weight: 500; }
+    form { display: grid; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { font-size: .82rem; font-weight: 600; margin-bottom: 6px; display: block; }
+    input, select, textarea {
+      width: 100%; padding: 13px 16px; border: 1.5px solid var(--gris-clair); border-radius: 8px;
+      font-family: inherit; font-size: .95rem; background: var(--blanc);
+      transition: border-color .2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--noir); }
+
+    /* ===== Footer ===== */
+    footer { background: var(--noir); color: rgba(255,255,255,.65); padding: 56px 0 32px; }
+    .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
+    footer .brand { color: var(--blanc); }
+    footer .brand .logo { background: var(--blanc); color: var(--noir); }
+    .socials { display: flex; gap: 12px; }
+    .socials a {
+      width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
+      display: grid; place-items: center; font-size: 1.05rem; color: var(--blanc);
+      transition: all .2s;
+    }
+    .socials a:hover { background: var(--blanc); color: var(--noir); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px;
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font-size: .85rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0;
+        background: var(--blanc); flex-direction: column; padding: 24px; gap: 18px;
+        border-bottom: 1px solid var(--gris-clair); }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+      .stat:nth-child(3) { border-left: none; }
+      .cards, .modules, .methode-grid { grid-template-columns: 1fr; }
+      .apropos-grid, .admission-grid, .contact-grid, .form-row { grid-template-columns: 1fr; gap: 40px; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <div class="container nav">
+      <a href="#accueil" class="brand">
+        <span class="logo"><i class="bi bi-mortarboard-fill"></i></span>
+        <span>IFPIG Lomé<small>Informatique de gestion</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#apropos">L'institut</a>
+        <a href="#formations">Formations</a>
+        <a href="#programme">Programme</a>
+        <a href="#admission">Admission</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-dark"><i class="bi bi-pencil-square"></i> S'inscrire</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="accueil" style="padding-top:110px;">
+    <div class="container">
+      <span class="eyebrow"><i class="bi bi-geo-alt"></i> Lomé, Togo — Partenariat méthodologique suisse</span>
+      <h1>Formez-vous aux métiers de l'informatique de gestion, par la pratique.</h1>
+      <p class="lead">
+        L'IFPIG Lomé propose une formation professionnelle diplômante de trois ans, inspirée du modèle
+        suisse ES du CPNE : approche par compétences, cas réels d'entreprise et pratique intensive
+        sur des outils professionnels (ERP, bases de données, gestion de projet).
+      </p>
+      <div class="hero-actions">
+        <a href="#formations" class="btn btn-white"><i class="bi bi-journal-bookmark"></i> Découvrir les formations</a>
+        <a href="#contact" class="btn btn-outline-white"><i class="bi bi-arrow-down-circle"></i> Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats">
+    <div class="container stats-grid">
+      <div class="stat"><div class="num">3 ans</div><div class="label">Parcours diplômant</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Semestres de formation pratique</div></div>
+      <div class="stat"><div class="num">20</div><div class="label">Postes en salle informatique</div></div>
+      <div class="stat"><div class="num">100 %</div><div class="label">Orienté compétences métier</div></div>
+    </div>
+  </div>
+
+  <!-- ===== À PROPOS ===== -->
+  <section id="apropos">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-building"></i> L'institut</span>
+        <h2>Un institut pensé pour l'emploi, pas seulement pour le diplôme.</h2>
+      </div>
+      <div class="apropos-grid">
+        <div>
+          <p>
+            À Lomé, les entreprises recherchent des profils opérationnels en gestion et en
+            digitalisation — mais l'offre de formation reste majoritairement académique.
+            L'IFPIG Lomé comble ce décalage avec une pédagogie transposée du modèle
+            <strong>ES Informatique de gestion du CPNE</strong> (Suisse).
+          </p>
+          <p>
+            Nos étudiants apprennent en faisant : études de cas réels, projets d'entreprise,
+            utilisation quotidienne d'un véritable ERP et d'une plateforme d'apprentissage en ligne.
+            Chaque module validé donne lieu à une attestation de compétences.
+          </p>
+          <p>
+            Le dispositif hybride — présentiel sur notre campus et en ligne, y compris sur
+            smartphone avec contenus téléchargeables — est conçu pour les réalités locales de
+            connectivité.
+          </p>
+        </div>
+        <div class="apropos-points">
+          <div class="point">
+            <i class="bi bi-patch-check"></i>
+            <div>
+              <h3>Approche par compétences</h3>
+              <p>Un plan d'études organisé autour de situations professionnelles réelles, pas de la seule théorie.</p>
+            </div>
+          </div>
+          <div class="point">
+            <i class="bi bi-globe-europe-africa"></i>
+            <div>
+              <h3>Partenariat suisse</h3>
+              <p>Méthodologie validée par un partenariat avec le CPNE (Neuchâtel, Suisse).</p>
+            </div>
+          </div>
+          <div class="point">
+            <i class="bi bi-pc-display"></i>
+            <div>
+              <h3>Outils professionnels réels</h3>
+              <p>Pratique intensive sur ERP, bases de données et plateforme e-learning dès le premier semestre.</p>
+            </div>
+          </div>
+          <div class="point">
+            <i class="bi bi-phone"></i>
+            <div>
+              <h3>Hybride et accessible</h3>
+              <p>Cours en présentiel et en ligne, application mobile avec mode hors ligne pour étudier partout.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMATIONS ===== -->
+  <section id="formations" class="bg-gris">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-journal-bookmark"></i> Nos formations</span>
+        <h2>Trois offres, un même objectif : des compétences directement utilisables.</h2>
+        <p>De la formation initiale diplômante aux modules courts pour les entreprises.</p>
+      </div>
+      <div class="cards">
+        <div class="card featured">
+          <div class="icon"><i class="bi bi-mortarboard"></i></div>
+          <div class="sub">Formation initiale — produit phare</div>
+          <h3>Informatique de gestion</h3>
+          <ul>
+            <li><i class="bi bi-check-lg"></i> Parcours diplômant de 3 ans (6 semestres)</li>
+            <li><i class="bi bi-check-lg"></i> Modules capitalisables avec attestation de compétences</li>
+            <li><i class="bi bi-check-lg"></i> Stage / projet d'entreprise intégré</li>
+            <li><i class="bi bi-check-lg"></i> Pédagogie hybride : campus + en ligne</li>
+          </ul>
+          <div class="prix">450 000 FCFA / an<small>Paiement possible par module</small></div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bi bi-briefcase"></i></div>
+          <div class="sub">Formation continue</div>
+          <h3>Modules courts certifiants</h3>
+          <ul>
+            <li><i class="bi bi-check-lg"></i> Sessions de 2 à 5 jours, inter-entreprises</li>
+            <li><i class="bi bi-check-lg"></i> ERP, Excel avancé, tableaux de bord</li>
+            <li><i class="bi bi-check-lg"></i> Gestion de projet, leadership</li>
+            <li><i class="bi bi-check-lg"></i> Certificat délivré à l'issue du module</li>
+          </ul>
+          <div class="prix">75 000 – 250 000 FCFA<small>Selon le module choisi</small></div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bi bi-buildings"></i></div>
+          <div class="sub">Entreprises</div>
+          <h3>Intra-entreprise &amp; digitalisation</h3>
+          <ul>
+            <li><i class="bi bi-check-lg"></i> Parcours sur mesure dans vos locaux ou au campus</li>
+            <li><i class="bi bi-check-lg"></i> Accompagnement de projets de digitalisation</li>
+            <li><i class="bi bi-check-lg"></i> Montée en compétences de vos équipes</li>
+            <li><i class="bi bi-check-lg"></i> Diagnostic préalable de vos besoins</li>
+          </ul>
+          <div class="prix">Sur devis<small>Contactez-nous pour un diagnostic</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMME ===== -->
+  <section id="programme">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-list-check"></i> Programme</span>
+        <h2>Les modules du parcours diplômant.</h2>
+        <p>Un socle complet reliant les métiers de la gestion et les technologies de l'information.</p>
+      </div>
+      <div class="modules">
+        <div class="module"><i class="bi bi-calculator"></i> Comptabilité &amp; gestion financière</div>
+        <div class="module"><i class="bi bi-diagram-3"></i> Systèmes d'information &amp; ERP</div>
+        <div class="module"><i class="bi bi-database"></i> Bases de données</div>
+        <div class="module"><i class="bi bi-kanban"></i> Gestion de projet</div>
+        <div class="module"><i class="bi bi-people"></i> Management &amp; leadership</div>
+        <div class="module"><i class="bi bi-chat-square-text"></i> Communication professionnelle</div>
+        <div class="module"><i class="bi bi-briefcase"></i> Stage / projet d'entreprise</div>
+        <div class="module"><i class="bi bi-laptop"></i> Pratique sur outils professionnels</div>
+        <div class="module"><i class="bi bi-award"></i> Travail de diplôme mandaté</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÉTHODE ===== -->
+  <section class="methode">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-lightbulb"></i> Notre méthode</span>
+        <h2 style="color:#fff;">Pourquoi choisir l'IFPIG&nbsp;?</h2>
+        <p>Quatre engagements qui font la différence sur le marché de l'emploi.</p>
+      </div>
+      <div class="methode-grid">
+        <div class="methode-item">
+          <i class="bi bi-bullseye"></i>
+          <h3>Adéquation formation-emploi</h3>
+          <p>Des compétences définies avec les entreprises de Lomé, pour être opérationnel dès la sortie.</p>
+        </div>
+        <div class="methode-item">
+          <i class="bi bi-person-check"></i>
+          <h3>Suivi individualisé</h3>
+          <p>Petites cohortes, suivi de l'assiduité et de la progression, intervention pédagogique précoce.</p>
+        </div>
+        <div class="methode-item">
+          <i class="bi bi-credit-card"></i>
+          <h3>Paiement flexible</h3>
+          <p>Écolage payable par module, remises early-bird et parrainage pour faciliter l'accès à la formation.</p>
+        </div>
+        <div class="methode-item">
+          <i class="bi bi-shield-check"></i>
+          <h3>Rigueur méthodologique</h3>
+          <p>Évaluation critériée, jalons de validation et cadre qualité inspiré des standards suisses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADMISSION ===== -->
+  <section id="admission" class="bg-gris">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-door-open"></i> Admission</span>
+        <h2>Rejoindre l'institut, en quatre étapes simples.</h2>
+      </div>
+      <div class="admission-grid">
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div><h3>Prenez contact</h3><p>Via le formulaire ci-dessous, par téléphone ou lors de nos journées portes ouvertes.</p></div>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <div><h3>Entretien d'orientation</h3><p>Nous validons ensemble votre projet et le parcours le plus adapté à votre profil.</p></div>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <div><h3>Inscription &amp; paiement</h3><p>Inscription en ligne ou au campus ; paiement annuel ou par module, selon votre situation.</p></div>
+          </div>
+          <div class="step">
+            <div class="n">4</div>
+            <div><h3>Accès immédiat à la plateforme</h3><p>Votre compte étudiant et vos cours en ligne sont activés dès la validation du paiement.</p></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:18px;">La formation s'adresse à :</h3>
+          <div class="publics">
+            <div class="public"><i class="bi bi-backpack"></i> Bacheliers et étudiants en réorientation</div>
+            <div class="public"><i class="bi bi-arrow-repeat"></i> Jeunes diplômés en requalification</div>
+            <div class="public"><i class="bi bi-person-workspace"></i> Collaborateurs d'entreprises (formation continue)</div>
+            <div class="public"><i class="bi bi-buildings"></i> Entreprises (parcours intra-entreprise sur mesure)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag"><i class="bi bi-envelope"></i> Contact</span>
+        <h2>Parlons de votre projet de formation.</h2>
+        <p>Nous répondons sous 48&nbsp;h ouvrées.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+            <div><h3>Adresse</h3><p>Campus IFPIG — Lomé, Togo<br><span style="color:var(--gris); font-size:.88rem;">(quartier Agoè / Adidogomé / Tokoin — à confirmer)</span></p></div>
+          </div>
+          <div class="contact-line">
+            <i class="bi bi-envelope"></i>
+            <div><h3>Email</h3><p>contact@ifpig-lome.tg</p></div>
+          </div>
+          <div class="contact-line">
+            <i class="bi bi-telephone"></i>
+            <div><h3>Téléphone / WhatsApp</h3><p>+228 XX XX XX XX</p></div>
+          </div>
+          <div class="contact-line">
+            <i class="bi bi-clock"></i>
+            <div><h3>Horaires</h3><p>Lundi – Vendredi : 8 h – 18 h<br>Samedi : 8 h – 13 h</p></div>
+          </div>
+        </div>
+        <form action="mailto:contact@ifpig-lome.tg" method="post" enctype="text/plain">
+          <div class="form-row">
+            <div>
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+            </div>
+            <div>
+              <label for="tel">Téléphone</label>
+              <input type="tel" id="tel" name="telephone" placeholder="+228 ...">
+            </div>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+          </div>
+          <div>
+            <label for="interet">Je suis intéressé(e) par</label>
+            <select id="interet" name="interet">
+              <option>Formation initiale — Informatique de gestion (2 ans)</option>
+              <option>Formation continue — modules courts</option>
+              <option>Formation intra-entreprise / digitalisation</option>
+              <option>Autre demande</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Décrivez brièvement votre projet ou votre question…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark" style="justify-content:center;"><i class="bi bi-send"></i> Envoyer ma demande</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#accueil" class="brand" style="margin-bottom:14px;">
+            <span class="logo"><i class="bi bi-mortarboard-fill"></i></span>
+            <span>IFPIG Lomé<small style="color:rgba(255,255,255,.5);">Informatique de gestion</small></span>
+          </a>
+          <p style="max-width:360px; font-size:.9rem; margin-top:14px;">
+            Institut de Formation Professionnelle en Informatique de Gestion —
+            former les talents du numérique et de la gestion au Togo.
+          </p>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 IFPIG Lomé — Tous droits réservés.</span>
+        <span>Pédagogie inspirée du modèle ES du CPNE (Suisse)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+</body>
+</html>
