@@ -273,25 +273,26 @@ input:focus, select:focus, textarea:focus { border-color: var(--noir); }
 }
 
 /* ===== Footer ===== */
-footer { background: var(--noir); color: rgba(255,255,255,.65); padding: 56px 0 32px; }
-.footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
+footer { background: var(--noir); color: rgba(255,255,255,.65); padding: 32px 0 20px; font-size: .88rem; }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 24px 40px; flex-wrap: wrap; margin-bottom: 22px; }
 footer .brand { color: var(--blanc); }
 footer .brand .logo { background: var(--blanc); color: var(--noir); }
-.footer-nav { display: grid; gap: 10px; }
-.footer-nav a { font-size: .9rem; color: rgba(255,255,255,.65); transition: color .2s; }
+footer .footer-grid p { display: none; }
+.footer-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
+.footer-nav a { font-size: .88rem; color: rgba(255,255,255,.65); transition: color .2s; }
 .footer-nav a:hover { color: var(--blanc); }
-.footer-nav h3 { color: var(--blanc); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-.socials { display: flex; gap: 12px; }
+.footer-nav h3 { display: none; }
+.socials { display: flex; gap: 10px; }
 .socials a {
-  width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
-  display: grid; place-items: center; font-size: 1.05rem; color: var(--blanc);
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
+  display: grid; place-items: center; font-size: .95rem; color: var(--blanc);
   transition: all .2s;
 }
 .socials a:hover { background: var(--blanc); color: var(--noir); }
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px;
-  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  font-size: .85rem;
+  border-top: 1px solid rgba(255,255,255,.12); padding-top: 16px;
+  display: flex; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap;
+  font-size: .82rem;
 }
 
 /* ===== Responsive ===== */
