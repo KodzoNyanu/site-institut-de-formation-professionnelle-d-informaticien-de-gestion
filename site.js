@@ -12,6 +12,51 @@ document.querySelectorAll('.nav-links a:not(.btn)').forEach(a => {
   if (a.getAttribute('href') === page) a.classList.add('active');
 });
 
+// Carrousel du hero (page d'accueil)
+const heroTrack = document.getElementById('heroTrack');
+if (heroTrack) {
+  const slides = heroTrack.children;
+  const dotsWrap = document.getElementById('heroDots');
+  const carousel = document.getElementById('heroCarousel');
+  let idx = 0, timer;
+
+  for (let i = 0; i < slides.length; i++) {
+    const b = document.createElement('button');
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', 'Diapositive ' + (i + 1));
+    b.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(b);
+  }
+  const dots = dotsWrap.children;
+
+  function render() {
+    heroTrack.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    for (let i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+  }
+  function go(i) { idx = (i + slides.length) % slides.length; render(); restart(); }
+  const next = () => go(idx + 1);
+  const prev = () => go(idx - 1);
+  function restart() { clearInterval(timer); timer = setInterval(next, 7000); }
+
+  document.getElementById('heroNext').addEventListener('click', next);
+  document.getElementById('heroPrev').addEventListener('click', prev);
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', restart);
+
+  // glissement tactile (mobile)
+  let x0 = null;
+  carousel.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    x0 = null;
+  });
+
+  render();
+  restart();
+}
+
 // Envoi des formulaires vers le CRM Odoo via le pont local (IntegrationERP/webhook_server.py).
 // Si le pont n'est pas joignable (site consulté hors du poste de démo), repli sur mailto:.
 const ODOO_BRIDGE = 'http://localhost:5000/site/preinscription';

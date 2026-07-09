@@ -30,21 +30,69 @@
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="container">
-      <span class="eyebrow"><i class="bi bi-geo-alt"></i> Lomé, Togo — Partenariat méthodologique suisse</span>
-      <h1>Formez-vous aux métiers de l'informatique de gestion, par la pratique.</h1>
-      <p class="lead">
-        L'IFPIG Lomé propose une formation professionnelle diplômante de trois ans, inspirée du modèle
-        suisse ES du CPNE : approche par compétences, cas réels d'entreprise et pratique intensive
-        sur des outils professionnels (ERP, bases de données, gestion de projet).
-      </p>
-      <div class="hero-actions">
-        <a href="formations.html" class="btn btn-white"><i class="bi bi-journal-bookmark"></i> Découvrir les formations</a>
-        <a href="inscription.html" class="btn btn-outline-white"><i class="bi bi-pencil-square"></i> S'inscrire</a>
-      </div>
+  <!-- ===== HERO CARROUSEL ===== -->
+  <section class="hero-carousel" id="heroCarousel" aria-roledescription="carrousel">
+    <div class="hero-track" id="heroTrack">
+
+      <!-- Diapo 1 : vidéo de Lomé -->
+      <article class="hero-slide">
+        <div class="hero-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/cPUYq6_kBuA?autoplay=1&mute=1&loop=1&playlist=cPUYq6_kBuA&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&cc_load_policy=0&iv_load_policy=3&fs=0"
+            title="Lomé, Togo" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="container hero-content">
+          <span class="eyebrow"><i class="bi bi-geo-alt"></i> Lomé, Togo — Partenariat méthodologique suisse</span>
+          <h1>Formez-vous aux métiers de l'informatique de gestion, par la pratique.</h1>
+          <p class="lead">
+            L'IFPIG Lomé propose une formation professionnelle diplômante de trois ans, inspirée du modèle
+            suisse ES du CPNE : approche par compétences, cas réels d'entreprise et pratique intensive
+            sur des outils professionnels (ERP, bases de données, gestion de projet).
+          </p>
+          <div class="hero-actions">
+            <a href="formations.html" class="btn btn-white"><i class="bi bi-journal-bookmark"></i> Découvrir les formations</a>
+            <a href="inscription.html" class="btn btn-outline-white"><i class="bi bi-pencil-square"></i> S'inscrire</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Diapo 2 : pédagogie -->
+      <article class="hero-slide">
+        <div class="container hero-content">
+          <span class="eyebrow"><i class="bi bi-patch-check"></i> Modèle ES du CPNE — Suisse</span>
+          <h1>Une pédagogie par compétences, validée par un partenariat suisse.</h1>
+          <p class="lead">
+            Études de cas réels, projets d'entreprise et pratique quotidienne sur des outils
+            professionnels : ici, on apprend en faisant. Chaque module validé délivre une attestation.
+          </p>
+          <div class="hero-actions">
+            <a href="institut.html" class="btn btn-white"><i class="bi bi-building"></i> Découvrir l'institut</a>
+            <a href="programme.html" class="btn btn-outline-white"><i class="bi bi-list-check"></i> Voir le programme</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Diapo 3 : rentrée -->
+      <article class="hero-slide">
+        <div class="container hero-content">
+          <span class="eyebrow"><i class="bi bi-calendar2-check"></i> Rentrée ouverte</span>
+          <h1>Les inscriptions pour la prochaine rentrée sont ouvertes.</h1>
+          <p class="lead">
+            Places limitées pour garantir un suivi individualisé. Préinscrivez-vous en ligne, sans
+            engagement — notre équipe vous recontacte sous 48&nbsp;h ouvrées.
+          </p>
+          <div class="hero-actions">
+            <a href="inscription.html" class="btn btn-white"><i class="bi bi-pencil-square"></i> Je m'inscris</a>
+            <a href="contact.html" class="btn btn-outline-white"><i class="bi bi-envelope"></i> Nous contacter</a>
+          </div>
+        </div>
+      </article>
+
     </div>
+
+    <button class="hero-arrow prev" id="heroPrev" aria-label="Diapositive précédente"><i class="bi bi-chevron-left"></i></button>
+    <button class="hero-arrow next" id="heroNext" aria-label="Diapositive suivante"><i class="bi bi-chevron-right"></i></button>
+    <div class="hero-dots" id="heroDots" role="tablist" aria-label="Choisir une diapositive"></div>
   </section>
 
   <!-- ===== STATS ===== -->
