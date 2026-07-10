@@ -423,4 +423,9 @@ footer .footer-grid p { display: none; }
   .hero-actions { gap: 10px; }
   .hero-actions .btn { padding: 11px 18px; font-size: .88rem; }
   .hero-dots { bottom: 18px; }
+  /* footer resserré : mêmes contenus, espacements réduits */
+  footer { padding: 26px 0 14px; }
+  .footer-grid { gap: 18px 32px; margin-bottom: 16px; }
+  .footer-nav { gap: 6px 18px; }
+  .footer-bottom { padding-top: 12px; gap: 2px 14px; font-size: .78rem; }
 }
