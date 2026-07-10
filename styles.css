@@ -198,6 +198,7 @@ section { padding: 96px 0; }
 .apropos-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: start; }
 .apropos-grid p { margin-bottom: 18px; color: var(--gris-fonce); }
 .apropos-points { display: grid; gap: 20px; }
+.apropos-points.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .point {
   display: flex; gap: 18px; padding: 24px;
   border: 1px solid var(--gris-clair); border-radius: 12px;
@@ -269,6 +270,7 @@ section { padding: 96px 0; }
 .methode .section-head .tag, .methode .section-head p { color: rgba(255,255,255,.6); }
 .methode .section-head h2 { color: var(--blanc); }
 .methode-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.methode-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .methode-item { padding: 28px 24px; border: 1px solid rgba(255,255,255,.15); border-radius: 12px; transition: border-color .2s; }
 .methode-item:hover { border-color: rgba(255,255,255,.5); }
 .methode-item i { font-size: 1.6rem; display: block; margin-bottom: 16px; }
@@ -364,6 +366,11 @@ footer .footer-grid p { display: none; }
 }
 
 /* ===== Responsive ===== */
+/* Tablette large : les grilles de 4 passent à 2 colonnes */
+@media (max-width: 1024px) {
+  .methode-grid { grid-template-columns: repeat(2, 1fr); }
+}
+/* Tablette : menu hamburger, grilles de 3 passent à 2 colonnes */
 @media (max-width: 900px) {
   .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0;
     background: var(--blanc); flex-direction: column; padding: 24px; gap: 18px;
@@ -372,8 +379,15 @@ footer .footer-grid p { display: none; }
   .nav-toggle { display: block; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
   .stat:nth-child(3) { border-left: none; }
-  .cards, .modules, .methode-grid, .annees { grid-template-columns: 1fr; }
-  .apropos-grid, .admission-grid, .contact-grid, .form-row { grid-template-columns: 1fr; gap: 40px; }
+  .cards, .modules, .annees, .methode-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .apropos-grid, .admission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   section { padding: 64px 0; }
+}
+/* Mobile : tout en 1 colonne */
+@media (max-width: 640px) {
+  .cards, .modules, .annees, .methode-grid, .methode-grid.cols-3,
+  .apropos-points.cols-2, .form-row { grid-template-columns: 1fr; }
   .form-card { padding: 28px 20px; }
+  .hero-slide p.lead, .hero p.lead { font-size: 1rem; }
+  .hero .eyebrow, .hero-slide .eyebrow { font-size: .72rem; }
 }
