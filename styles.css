@@ -120,10 +120,14 @@ header {
 }
 @media (min-aspect-ratio: 16/9) { .hero-video iframe { width: 100%; height: 300%; } }
 @media (max-aspect-ratio: 16/9) { .hero-video iframe { width: 300%; height: 100%; } }
-/* voile plus léger : laisse voir le média tout en gardant le texte lisible */
+/* vidéo : voile léger (la rue filmée est déjà sombre) */
 .hero-video::after, .hero-media::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.18) 100%);
+}
+/* images : voile plus soutenu (photos claires → même lisibilité que sur la vidéo) */
+.hero-media::after {
+  background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.58) 55%, rgba(0,0,0,.34) 100%);
 }
 .hero-slide .hero-content { position: relative; z-index: 2; text-shadow: 0 2px 14px rgba(0,0,0,.45); }
 
