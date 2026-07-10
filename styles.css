@@ -165,6 +165,17 @@ header {
   width: 420px; height: 420px; border-radius: 50%;
   border: 1px solid rgba(255,255,255,.1);
 }
+/* variante avec photo de fond : même traitement que le carrousel de l'accueil */
+.page-hero.avec-image {
+  background-size: cover; background-position: center;
+  padding: 96px 0 84px;
+}
+.page-hero.avec-image::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.58) 55%, rgba(0,0,0,.34) 100%);
+}
+.page-hero .container { position: relative; z-index: 2; }
+.page-hero.avec-image .container { text-shadow: 0 2px 14px rgba(0,0,0,.45); }
 .page-hero .crumb {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
