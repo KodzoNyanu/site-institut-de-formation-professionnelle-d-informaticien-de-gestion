@@ -13,6 +13,10 @@ html { scroll-behavior: smooth; }
 html, body { overflow-x: clip; }
 /* pas de rebond vertical au-delà de la page sur mobile */
 body { overscroll-behavior-y: none; }
+/* iOS : pendant le rebond élastique (impossible à désactiver), la zone au-delà de la
+   page est blanche en haut (comme l'en-tête) et noire en bas (comme le footer),
+   pour que le rebond soit invisible */
+html { background: linear-gradient(var(--blanc), var(--blanc) 50%, var(--noir) 50%, var(--noir)); }
 body {
   font-family: 'Inter', 'Segoe UI', sans-serif;
   color: var(--noir);
