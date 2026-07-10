@@ -120,13 +120,14 @@ header {
 /* média de fond : vidéo (diapo 1) ou image (diapos 2-3) */
 .hero-video, .hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-media { background-size: cover; background-position: center; }
-/* recouvrement plein cadre de la vidéo YouTube (technique 300 % : plus de bandes noires) */
+/* recouvrement plein cadre de la vidéo YouTube : l'iframe garde un ratio 16:9
+   et dépasse toujours le cadre (jamais de bandes noires, quelle que soit l'orientation) */
 .hero-video iframe {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 100%; height: 100%; border: 0; pointer-events: none;
+  width: max(100vw, calc(100vh * 16 / 9));
+  height: max(100vh, calc(100vw * 9 / 16));
+  border: 0; pointer-events: none;
 }
-@media (min-aspect-ratio: 16/9) { .hero-video iframe { width: 100%; height: 300%; } }
-@media (max-aspect-ratio: 16/9) { .hero-video iframe { width: 300%; height: 100%; } }
 /* vidéo : voile léger (la rue filmée est déjà sombre) */
 .hero-video::after, .hero-media::after {
   content: ""; position: absolute; inset: 0;
@@ -410,6 +411,12 @@ footer .footer-grid p { display: none; }
   .cards, .modules, .annees, .methode-grid, .methode-grid.cols-3,
   .apropos-points.cols-2, .form-row { grid-template-columns: 1fr; }
   .form-card { padding: 28px 20px; }
-  .hero-slide p.lead, .hero p.lead { font-size: 1rem; }
-  .hero .eyebrow, .hero-slide .eyebrow { font-size: .72rem; }
+  /* hero compacté : titre + texte + boutons tiennent dans l'écran du téléphone */
+  .hero-slide { padding: 28px 0 56px; }
+  .hero h1, .hero-slide h1 { font-size: clamp(1.5rem, 6.5vw, 1.9rem); margin-bottom: 14px; }
+  .hero-slide p.lead, .hero p.lead { font-size: .95rem; margin-bottom: 22px; }
+  .hero .eyebrow, .hero-slide .eyebrow { font-size: .68rem; margin-bottom: 16px; padding: 6px 12px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { padding: 11px 18px; font-size: .88rem; }
+  .hero-dots { bottom: 18px; }
 }
