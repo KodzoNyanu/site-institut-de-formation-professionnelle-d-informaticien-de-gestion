@@ -9,6 +9,10 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* aucun mouvement horizontal parasite (l'en-tête et le pied de page restent calés) */
+html, body { overflow-x: clip; }
+/* pas de rebond vertical au-delà de la page sur mobile */
+body { overscroll-behavior-y: none; }
 body {
   font-family: 'Inter', 'Segoe UI', sans-serif;
   color: var(--noir);
@@ -95,8 +99,11 @@ header {
 .hero-carousel { position: relative; background: var(--noir); overflow: hidden; padding: 0; }
 .hero-track { display: flex; transition: transform .6s cubic-bezier(.6,.05,.2,.95); will-change: transform; }
 .hero-slide {
-  position: relative; flex: 0 0 100%; min-height: 560px;
-  display: flex; align-items: center; padding: 96px 0; overflow: hidden;
+  position: relative; flex: 0 0 100%;
+  /* la diapo remplit l'écran sous l'en-tête : les boutons restent toujours visibles */
+  min-height: calc(100vh - 72px);
+  min-height: calc(100svh - 72px);
+  display: flex; align-items: center; padding: 48px 0 72px; overflow: hidden;
   color: var(--blanc);
 }
 /* cercles décoratifs (repris de l'ancien hero) */
@@ -150,7 +157,7 @@ header {
 }
 .hero-dots button.active { background: var(--blanc); width: 26px; border-radius: 5px; }
 @media (max-width: 900px) {
-  .hero-slide { min-height: 480px; padding: 64px 0; }
+  .hero-slide { padding: 40px 0 64px; }
   .hero-arrow { display: none; }
 }
 
