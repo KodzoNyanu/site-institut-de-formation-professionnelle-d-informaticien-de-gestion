@@ -1,19 +1,19 @@
 Images de fond du carrousel du hero (page d'accueil)
 =====================================================
 
-Déposez ici les deux images, avec EXACTEMENT ces noms de fichier :
+Fichiers en place (référencés par index.html) :
 
-  cpne.jpg     -> diapo 2 « Une pédagogie par compétences… »
-                  (photo paysage : idéalement la vue aérienne de la ville seule,
-                   SANS le bandeau/logo du site CPNE, qui rendrait mal en fond)
+  cpne.webp    -> diapo 2 « Une pédagogie par compétences… »
+                  Vue aérienne du bâtiment CPNE, recadrée pour retirer le
+                  bandeau/logo/menu du site d'origine (1918 x 522 px).
 
-  campus.jpg   -> diapo 3 « Rentrée ouverte »
-                  (photo paysage : étudiants, campus ou salle informatique)
+  campus.png   -> diapo 3 « Rentrée ouverte »
+                  Salle informatique (photo de banque d'images).
 
-Conseils :
-- Format paysage, idéalement 1600 x 900 px ou plus (JPG ou PNG).
+Pour remplacer une image plus tard :
+- Garder le MÊME nom de fichier (sinon adapter index.html).
+- Format paysage, idéalement 1600 x 900 px ou plus.
 - Si une image manque, la diapo reste sur fond noir (le texte reste lisible) —
   rien ne casse.
-- Après avoir déposé les fichiers : git add media/, git commit, git push
+- Après remplacement : git add media/, git commit, git push
   (le déploiement Vercel + GitHub Pages se met à jour automatiquement).
-  Ou dites-le-moi et je m'en charge.
